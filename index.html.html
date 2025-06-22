@@ -10,6 +10,7 @@
             background-color: #f5faff;
             padding: 30px;
             text-align: center;
+            transition: background-color 0.5s ease;
         }
         h1, h2 {
             color: #2c3e50;
@@ -45,10 +46,10 @@
     </style>
 </head>
 <body>
-    <h1>Pengumuman PPDB SDN 2 SOMOROTO</h1>
-    <h2>Tahun Ajaran 2025/2026</h2>
+    <h1>Pengumuman Penerimaan Siswa Baru</h1>
+    <h2>SDN 2 Somoroto Tahun Ajaran 2025/2026</h2>
     <p>Masukkan nama lengkap sesuai pendaftaran:</p>
-    <input type="text" id="searchInput" placeholder="Contoh: ABRIZAM PUTRA ARMADHANY">
+    <input type="text" id="searchInput" placeholder="Contoh: HAIDAR IRSYAD ALKHOIR">
     <div class="result" id="result"></div>
 
     <script>
@@ -101,20 +102,28 @@
             "HAIDAR IRSYAD ALKHOIR"
         ];
 
-        document.getElementById("searchInput").addEventListener("input", function () {
+        const inputField = document.getElementById("searchInput");
+        const resultDiv = document.getElementById("result");
+
+        inputField.addEventListener("input", function () {
             const input = this.value.trim().toUpperCase();
-            const resultDiv = document.getElementById("result");
+            const body = document.body;
+
             if (!input) {
                 resultDiv.textContent = "";
                 resultDiv.className = "result";
+                body.style.backgroundColor = "#f5faff";
                 return;
             }
+
             if (siswa.includes(input)) {
                 resultDiv.textContent = input + " - DITERIMA";
                 resultDiv.className = "result accepted";
+                body.style.backgroundColor = "#d4edda";
             } else {
-                resultDiv.textContent = "Nama tidak ditemukan.";
+                resultDiv.textContent = input + " TIDAK DITEMUKAN DALAM DATA";
                 resultDiv.className = "result not-found";
+                body.style.backgroundColor = "#f8d7da";
             }
         });
     </script>
